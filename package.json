@@ -1,0 +1,17 @@
+{
+  "name": "upgradableERC20Tokens",
+  "version": "1.0.0",
+  "description": "This is based on the excellant blog post [here](https://medium.com/carbon-money/how-to-build-and-deploy-a-full-stack-upgradeable-erc-20-dapp-81a7e35e374)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.7.2",
+    "fs-extra": "^8.1.0",
+    "solc": "^0.5.11"
+  }
+}
