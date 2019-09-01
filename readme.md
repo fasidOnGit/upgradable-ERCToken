@@ -1,4 +1,4 @@
-This is based on the excellant blog post [here](https://medium.com/carbon-money/how-to-build-and-deploy-a-full-stack-upgradeable-erc-20-dapp-81a7e35e374)
+This is based on the excellent blog post [here](https://medium.com/carbon-money/how-to-build-and-deploy-a-full-stack-upgradeable-erc-20-dapp-81a7e35e374)
 
 > data-copying on-chain is expensive so isolating data storage from the logic supports future upgrades.
 
