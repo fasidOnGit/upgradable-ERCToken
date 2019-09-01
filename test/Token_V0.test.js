@@ -15,7 +15,7 @@ describe('Token_VO', () => {
       accounts = await web3.eth.getAccounts();
       token = await new web3.eth.Contract(compiledToken.abi)
           .deploy({data: compiledToken.evm.bytecode.object, arguments: [accounts[0], accounts[1]]})
-          .send({from: accounts[0], gas: '3000000'});
+          .send({from: accounts[0], gas: '5000000'});
       token.setProvider(provider);
     });
 
@@ -25,6 +25,9 @@ describe('Token_VO', () => {
     });
 
     it('#balanceOf', async () => {
-       await token.methods.balanceOf(accounts[0]).call();
+        console.log(token.events);
+        const log = token.events.LogBool();
+        console.log(log.arguments);
+       await token.methods.balanceOf(accounts[1]).call();
     });
 });

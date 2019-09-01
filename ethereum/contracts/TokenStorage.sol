@@ -2,11 +2,12 @@ pragma solidity >=0.5.0 <0.7.0;
 
 import "./AllowanceSheet.sol";
 import "./BalanceSheet.sol";
+import "./helpers/Console.sol";
 
 /**
  * All Tokens and Token Proxies will inherit from the TokenStorage class.
  */
-contract TokenStorage {
+contract TokenStorage is Console {
     /**
      * Storage.
      */
@@ -17,6 +18,8 @@ contract TokenStorage {
     constructor(address _balances, address _allowances) public {
         balances = BalanceSheet(_balances);
         allowances = AllowanceSheet(_allowances);
+        log('balances', true);
+        
     }
     /**
      * @dev claim ownership of balance sheet passed into ctor.

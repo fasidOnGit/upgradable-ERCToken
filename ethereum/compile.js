@@ -25,7 +25,7 @@ const input = {
         }
     }
 };
-// console.log(JSON.parse(solc.compile(JSON.stringify(input), findImports(__dirname + '/contracts'))));
+console.log(JSON.parse(solc.compile(JSON.stringify(input), findImports(__dirname + '/contracts'))));
 const output = JSON.parse(solc.compile(JSON.stringify(input), findImports(__dirname + '/contracts'))).contracts['Token_V0.sol'];
 
 fs.ensureDirSync(buildPath);
