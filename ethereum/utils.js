@@ -1,5 +1,7 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
+const solc = require('solc');
+
 const findImports = (dir) => {
     const files = walkSync(dir);
     return (fileName) => {
@@ -33,6 +35,41 @@ const walkSync = (dir, filelist) => {
     return filelist;
 };
 
+const compile = (contractPath, contract) => {
+
+    const buildPath = path.resolve(__dirname, 'build');
+
+    const content = fs.readFileSync(contractPath, 'utf-8');
+    const input = {
+        language: 'Solidity',
+        sources: {
+            [contract]: {
+                content
+            }
+        },
+        settings: {
+            outputSelection: {
+                '*': {
+                    '*': [ '*' ]
+                }
+            }
+        }
+    };
+    console.log(JSON.parse(solc.compile(JSON.stringify(input), findImports(__dirname + '/contracts'))));
+    const output = JSON.parse(solc.compile(JSON.stringify(input), findImports(__dirname + '/contracts'))).contracts[contract];
+
+    fs.ensureDirSync(buildPath);
+
+    for(let key in output) {
+        if (output.hasOwnProperty(key)) {
+            fs.outputJsonSync(
+                path.resolve(buildPath, key + '.json'),
+                output[key]
+            );
+        }
+    }
+};
 module.exports = {
-    findImports
+    findImports,
+    compile
 };
