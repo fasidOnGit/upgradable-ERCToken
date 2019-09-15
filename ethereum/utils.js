@@ -69,7 +69,9 @@ const compile = (contractPath, contract) => {
         }
     }
 };
+const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 module.exports = {
     findImports,
-    compile
+    compile,
+    ZERO_ADDRESS
 };
