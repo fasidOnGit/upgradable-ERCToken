@@ -2,9 +2,9 @@
   "name": "upgradableERC20Tokens",
   "version": "1.0.0",
   "description": "This is based on the excellant blog post [here](https://medium.com/carbon-money/how-to-build-and-deploy-a-full-stack-upgradeable-erc-20-dapp-81a7e35e374)",
-  "main": "index.js",
+  "main": "./ethereum/compile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -e sol"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +18,8 @@
     "solc": "^0.5.11",
     "truffle-hdwallet-provider": "^1.0.17",
     "web3": "^1.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
   }
 }

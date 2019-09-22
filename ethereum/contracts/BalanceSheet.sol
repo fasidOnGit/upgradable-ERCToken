@@ -1,6 +1,5 @@
 pragma solidity >=0.5.0 <0.7.0;
 
-//openzeppelin-solidity/contracts/math/SafeMath.sol
 import "./libs/SafeMath.sol";
 import "./helpers/Ownable.sol";
 

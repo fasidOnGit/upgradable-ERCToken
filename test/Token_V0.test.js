@@ -18,6 +18,19 @@ let token, balanceSheet, allowanceSheet, tokenProxy;
 describe('Token_VO', () => {
     beforeEach(async () => {
       accounts = await web3.eth.getAccounts();
+        /**
+         * Deploys TokenV0 with some dummy zero addresses.
+         * @type {Contract}
+         */
+        token = await new web3.eth.Contract(tokenV0Compiled.abi)
+            .deploy({
+                data: tokenV0Compiled.evm.bytecode.object,
+                arguments: [
+                    ZERO_ADDRESS,
+                    ZERO_ADDRESS
+                ]
+            })
+            .send({from: accounts[0], gas: '5000000'});
 
       // Deploys BalanceSheet..
       balanceSheet = await new web3.eth.Contract(balanceSheetCompiled.abi)
@@ -32,19 +45,6 @@ describe('Token_VO', () => {
           .deploy({data: allowanceSheetCompiled.evm.bytecode.object})
           .send({from: accounts[0], gas: '1000000', gasPrice: '12334545'});
 
-        /**
-         * Deploys TokenV0 with some dummy zero addresses.
-         * @type {Contract}
-         */
-      token = await new web3.eth.Contract(tokenV0Compiled.abi)
-          .deploy({
-              data: tokenV0Compiled.evm.bytecode.object,
-              arguments: [
-                  ZERO_ADDRESS,
-                  ZERO_ADDRESS
-              ]
-          })
-          .send({from: accounts[0], gas: '5000000'});
 
         /**
          * Deploys TokenProxy with the deployed addresses of token, balancesSheet and allowanceSheet.
