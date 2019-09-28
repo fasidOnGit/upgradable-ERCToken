@@ -6,30 +6,19 @@ import "./BalanceSheet.sol";
 /**
  * All Tokens and Token Proxies will inherit from the TokenStorage class.
  */
-contract TokenStorage {
-    /**
-     * Storage.
-     */
-    BalanceSheet public balances;
-    AllowanceSheet public allowances;
-
-    // A TokenStorage consumer can set its storages only once , onInit.
-    constructor(address _balances, address _allowances) public {
-        balances = BalanceSheet(_balances);
-        allowances = AllowanceSheet(_allowances);
-    }
+contract TokenStorage is BalanceSheet, AllowanceSheet {
     /**
      * @dev claim ownership of balance sheet passed into ctor.
      */
     function claimBalanceOwnership() public {
-        balances.claimOwnerShip();
+        super.claimOwnerShip();
     }
     
     /**
      * @dev claim ownership of balance shet passed into ctor.
      */
     function claimAllowanceOwnership() public {
-        allowances.claimOwnerShip();
+        super.claimOwnerShip();
     }
 }
 /**
