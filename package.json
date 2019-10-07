@@ -4,7 +4,10 @@
   "description": "This is based on the excellant blog post [here](https://medium.com/carbon-money/how-to-build-and-deploy-a-full-stack-upgradeable-erc-20-dapp-81a7e35e374)",
   "main": "./ethereum/compile.js",
   "scripts": {
-    "start": "nodemon -e sol"
+    "start:web:build": "tsc -w",
+    "start:eth:contract": "nodemon ethereum/compile.js -e sol",
+    "start:web:run": "node build/index.js",
+    "start": "concurrently npm:start:web:*"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,8 @@
     "web3": "^1.2.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.2"
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.2",
+    "tsc": "^1.20150623.0"
   }
 }

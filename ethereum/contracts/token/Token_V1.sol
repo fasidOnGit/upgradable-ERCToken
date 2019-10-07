@@ -6,10 +6,7 @@ import "../helpers/Lockable.sol";
 
 contract Token_V1 is Token_V0, Pausable, Lockable {
   using SafeMath for uint256;
-  
-  constructor(address _balances, address _allowances) public
-    Token_V0(_balances, _allowances) {}
-  
+
   /**
    * Functions
    */
@@ -51,7 +48,7 @@ contract Token_V1 is Token_V0, Pausable, Lockable {
   
   /**
    * @dev Decrease the amount of tokens that an owner allowed to a spender.
-   * @notice
+   *
    */
   function decreaseApproval(address _spender, uint256 _substractedValue)
     public whenNotPaused returns (bool) {
@@ -88,13 +85,13 @@ contract Token_V1 is Token_V0, Pausable, Lockable {
     uint256 _substractedValue,
     address _tokenHolder
   ) internal {
-    uint256 oldValue = allowances.allowanceOf(_tokenHolder, _spender);
+    uint256 oldValue = super.allowance(_tokenHolder, _spender);
     if(_substractedValue > oldValue) {
-      allowances.setAllowance(_tokenHolder, _spender, 0);
+      super.setAllowance(_tokenHolder, _spender, 0);
     } else {
-      allowances.setAllowance(_tokenHolder, _spender, _substractedValue);
+      super.setAllowance(_tokenHolder, _spender, _substractedValue);
     }
-    emit Approval(_tokenHolder, _spender, allowances.allowanceOf(_tokenHolder, _spender));
+    emit Approval(_tokenHolder, _spender, super.allowance(_tokenHolder, _spender));
   }
   
   function increaseApprovalAllArgs(
@@ -102,7 +99,7 @@ contract Token_V1 is Token_V0, Pausable, Lockable {
     uint256 _addedValue,
     address _tokenHolder
   ) internal {
-    allowances.addAllowance(_tokenHolder, _spender, _addedValue);
-    emit Approval(_tokenHolder, _spender, allowances.allowanceOf(_tokenHolder, _spender));
+    super.addAllowance(_tokenHolder, _spender, _addedValue);
+    emit Approval(_tokenHolder, _spender, super.allowance(_tokenHolder, _spender));
   }
 }

@@ -10,10 +10,7 @@ const tokenV0Path = path.resolve(__dirname, 'contracts/token', tokenV0);
 compile(tokenV0Path, tokenV0);
 const contracts = {
     [tokenV0]: tokenV0Path,
-    // 'TokenProxy.sol': path.resolve(__dirname, 'contracts/proxy', 'TokenProxy.sol'),
-    'BalanceSheet.sol': path.resolve(__dirname, 'contracts/', 'BalanceSheet.sol'),
-    'TokenStorage.sol': path.resolve(__dirname, 'contracts/', 'TokenStorage.sol'),
-    'AllowanceSheet.sol': path.resolve(__dirname, 'contracts/', 'AllowanceSheet.sol'),
+    'Token_V1.sol': path.resolve(__dirname, 'contracts/token', 'Token_V1.sol'),
     'TokenProxy.sol': path.resolve(__dirname, 'contracts/proxy', 'TokenProxy.sol'),
 };
 fs.removeSync(buildPath);

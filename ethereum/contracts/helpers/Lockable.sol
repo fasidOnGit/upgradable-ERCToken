@@ -1,5 +1,7 @@
 pragma solidity >=0.5.0 <0.7.0;
 
+import "./Ownable.sol";
+
 /**
  * @title Lockable
  * @dev Base contract which allows children to lock certain methods from being called by clients.
@@ -7,7 +9,7 @@ pragma solidity >=0.5.0 <0.7.0;
  * but must be implemented in children functionality to adhere by
  * some inherited standard, for example.
  */
-contract Lockable {
+contract Lockable is Ownable {
   //Events
   event Unlocked();
   event Locked();
