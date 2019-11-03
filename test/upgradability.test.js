@@ -64,9 +64,18 @@ describe('Token V0, Eternal Storage', () => {
             from: accounts[0],
             gas: '1000000'
         });
+        await proxy.methods.mint(accounts[2], 100).send({
+            from: accounts[0],
+            gas: '1000000'
+        });
+        await proxy.methods.approve(accounts[1], 50).send({
+            from: accounts[0],
+            gas: '1000000'
+        });
         console.log(
             await proxy.methods.getBalance(accounts[1]).call(),
-            await proxy.methods.getTotalSupply().call()
+            await proxy.methods.getTotalSupply().call(),
+            await proxy.methods.allowance(accounts[0], accounts[1]).call()
         );
 
         token_v1= await new web3.eth.Contract(tokenV1Compiled.abi)
@@ -93,19 +102,37 @@ describe('Token V0, Eternal Storage', () => {
             'Total supply v1',
             await proxy_v1.methods.getTotalSupply().call()
         );
-        console.log(
+        // console.log(
             await proxy_v1.methods.unlock().send({
                 from: accounts[0],
                 gas: '100000'
-            })
-        );
+            });
+        // );
+        console.log('Unlock success!');
+        await proxy_v1.methods.unpause().send({
+            from: accounts[0],
+            gas: '100000'
+        });
+        console.log('UnPause Success!')
+        await proxy_v1.methods.approve(accounts[1], 50).send({
+            from: accounts[0],
+            gas: '1000000'
+        });
         console.log(
-            'Increase',
-            await proxy_v1.methods.increaseApproval(accounts[1], 100).send({
+            'Allowance before increase',
+            await proxy_v1.methods.allowance(accounts[0], accounts[1]).call()
+        );
+        // console.log(
+        //     'Increase',
+            await proxy_v1.methods.increaseApproval(accounts[1], 200).send({
                 from: accounts[0],
                 gas: '100000'
-            })
-        )
+            });
+        // )
+        console.log(
+            'Allowance after increase',
+            await proxy_v1.methods.allowance(accounts[0], accounts[1]).call()
+        );
 
     });
 
