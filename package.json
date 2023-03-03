@@ -17,7 +17,7 @@
     "@types/web3": "^1.0.19",
     "fs-extra": "^8.1.0",
     "ganache-cli": "^6.6.0",
-    "mocha": "^6.2.0",
+    "mocha": "^6.2.3",
     "solc": "^0.5.11",
     "truffle-hdwallet-provider": "^1.0.17",
     "web3": "^1.2.1"
